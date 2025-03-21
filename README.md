@@ -28,3 +28,10 @@ Pada milestone ini, saya mensimulasikan request lambat dengan menambahkan endpoi
 
 Dari percobaan ini, saya menyadari keterbatasan server single-threaded dalam menangani banyak pengguna secara bersamaan. Ini memotivasi perlunya implementasi server multithreaded agar permintaan bisa diproses secara paralel dan efisien.
 
+## Commit 5 Reflection Notes  
+
+![Commit 5 screen capture](assets/images/commit5.png)
+
+Pada tahap ini, saya menambahkan logika multithreading langsung di file `main.rs` tanpa membuat file/modul tambahan. Saya membangun struktur `ThreadPool` yang menyimpan beberapa thread pekerja (worker), yang siap menerima dan menjalankan tugas-tugas baru menggunakan channel dan sinkronisasi `Arc<Mutex>`.  
+
+Setiap kali ada request masuk, pekerjaan dikirim ke pool, dan salah satu worker akan menjalankannya. Hasilnya, server bisa menangani banyak permintaan sekaligus tanpa delay, tidak seperti sebelumnya. Saya juga belajar tentang `FnOnce` dan trait `Send` yang memungkinkan fungsi bisa dijalankan di thread terpisah dengan aman.
