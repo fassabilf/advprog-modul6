@@ -12,3 +12,12 @@ Pada tahap ini, fungsi `handle_connection` diperbarui agar tidak hanya membaca p
 
 Saya juga memodifikasi file `hello.html` untuk menampilkan pesan pribadi, dan saat mengakses server di browser, halaman tersebut berhasil ditampilkan. Ini membuktikan bahwa server merespons permintaan HTTP dengan benar.
 
+## Commit 3 Reflection Notes 
+
+![Commit 3 screen capture](assets/images/commit3.png)
+
+Pada tahap ini, fungsi `handle_connection` diperluas untuk **memvalidasi permintaan HTTP** dari browser. Program membaca baris pertama request (request line), lalu memeriksa apakah permintaan tersebut mengakses root path `/`. Jika iya, server mengembalikan halaman `hello.html` dengan status `200 OK`. Namun, jika pengguna mengakses URL lain, server akan membalas dengan halaman `404.html` dan status `404 NOT FOUND`.
+
+Perubahan ini membuat server lebih responsif terhadap jenis permintaan yang berbeda, mirip seperti web server nyata yang bisa memberi tahu pengguna jika halaman tidak ditemukan. Saya belajar bagaimana memisahkan logika antara pemrosesan request dan penentuan respon. Selain itu, pendekatan ini membuat kode lebih mudah untuk dikembangkan ke tahap berikutnya, seperti menambah fitur routing lebih kompleks.
+
+
