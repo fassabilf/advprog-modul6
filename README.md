@@ -20,4 +20,11 @@ Pada tahap ini, fungsi `handle_connection` diperluas untuk **memvalidasi permint
 
 Perubahan ini membuat server lebih responsif terhadap jenis permintaan yang berbeda, mirip seperti web server nyata yang bisa memberi tahu pengguna jika halaman tidak ditemukan. Saya belajar bagaimana memisahkan logika antara pemrosesan request dan penentuan respon. Selain itu, pendekatan ini membuat kode lebih mudah untuk dikembangkan ke tahap berikutnya, seperti menambah fitur routing lebih kompleks.
 
+## Commit 4 Reflection Notes
+
+![Commit 4 screen capture](assets/images/commit4.png)
+
+Pada milestone ini, saya mensimulasikan request lambat dengan menambahkan endpoint `/sleep` yang menunda respon selama 10 detik. Saya menggunakan `thread::sleep(Duration::from_secs(10))` untuk menciptakan efek delay. Ketika saya mengakses `/sleep` di satu tab browser, lalu mengakses `/` di tab lain, saya melihat bahwa permintaan kedua harus menunggu permintaan pertama selesai terlebih dahulu. Hal ini terjadi karena server masih berjalan di mode single-threaded, sehingga hanya bisa menangani satu koneksi dalam satu waktu.
+
+Dari percobaan ini, saya menyadari keterbatasan server single-threaded dalam menangani banyak pengguna secara bersamaan. Ini memotivasi perlunya implementasi server multithreaded agar permintaan bisa diproses secara paralel dan efisien.
 
